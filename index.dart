@@ -1,41 +1,134 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
+import 'CLASES/asignarSenamon.dart';
+import 'CLASES/datosUsuario.dart';
+
 void main(List<String> args) {
-  Map<String, String> senamones = {
+  Map<String, String> senamones1 = {
     "fuego": "",
     "agua": "",
     "hierva": "",
     "volador": "",
     "electrico": ""
   };
-  
-  // Random moneda = Random();
-  // int resultado = moneda.nextInt(2);
 
-  // if (resultado == 0) {
-  //   print('Empieza el jugador 1');
-  // } else {
-  //   print('Empieza el jugador 2');
-  // }
+  Map<String, String> senamones2 = {
+    "fuego": "",
+    "agua": "",
+    "hierva": "",
+    "volador": "",
+    "electrico": ""
+  };
 
-  print("Ingrese un tipo de senamon (Fuego, Agua, Hierva, Volador, Electrico):");
-  String? tipo = stdin.readLineSync()!;
+  List<List<dynamic>> jugador = [];
 
-  if (senamones.containsKey(tipo)) {
-    print("Ingrese el valor que desea asignar al tipo $tipo:");
-    String? dragon = stdin.readLineSync();
+  while (true) {
+    print("""
+1.Aumentar Ataque
+2.Aumentar Salud
+3.Iniciar Batalla""");
+    int opcion = int.parse(stdin.readLineSync()!);
+    switch (opcion) {
+      case 1:
+        print("Ingrese el numero del jugador 1/2");
+        int jugador = int.parse(stdin.readLineSync()!);
 
+        if (jugador == 1) {
+          senamones1.forEach((key, value) {
+            print(value);
+          });
 
-    if (dragon != null) {
-      senamones[tipo] = dragon;
-      print("Senamon '$tipo' actualizado con el valor: $dragon");
-    } else {
-      print("No se ingresó un valor válido para el senamon.");
+          print("Seleccion el nombre del senamon");
+          String? bicho = stdin.readLineSync()!;
+          senamones1.forEach((key, value) {
+            if (bicho == value) {
+            value.aumentarAtaque();
+          }
+          },)
+
+        }
+        break;
+      default:
     }
-  } else {
-    print("Tipo de senamon no válido.");
+    break;
   }
 
-  print(senamones); 
+  for (var i = 0; i < 2; i++) {
+    List<dynamic> filas = [];
+    for (var j = 0; j < 1; j++) {
+      print("Ingrese el nombre del jugador ${i + 1}:");
+      String? nombre = stdin.readLineSync()!;
+      filas.add(nombre);
+
+      print("Ingrese el email del jugadro ${i + 1}");
+      String? email = stdin.readLineSync()!;
+      filas.add(email);
+
+      print("Ingrese la fecha de nacimiento del jugador ${i + 1}");
+      DateTime fechaNacimiento = DateTime.parse(stdin.readLineSync()!);
+      filas.add(fechaNacimiento);
+
+      int xp = 0;
+      filas.add(xp);
+
+      int batallasGanadas = 0;
+      filas.add(batallasGanadas);
+    }
+    jugador.add(filas);
+  }
+
+  print(jugador);
+
+//   // Random moneda = Random();
+//   // int resultado = moneda.nextInt(2);
+
+//   // if (resultado == 0) {
+//   //   print('Empieza el jugador 1');
+//   // } else {
+//   //   print('Empieza el jugador 2');
+//   // }
+
+  senamones1.forEach((key, value) {
+    print("Ingrese el nombre del senamon de $key");
+    String? senamon = stdin.readLineSync()!.toLowerCase();
+    senamones1[key] = senamon;
+    print(senamones1);
+  });
+
+  senamones2.forEach((key, value) {
+    print("Ingrese el nombre del senamon de $key");
+    String? senamon = stdin.readLineSync()!.toLowerCase();
+    senamones2[key] = senamon;
+    print(senamones2);
+  });
+
+  senamones1.forEach((key, value) {
+    print("Ingrese el peso del senamon $value");
+    int peso = int.parse(stdin.readLineSync()!);
+
+    print("Ingrese la descripcion del senamon $value");
+    String? descripcion = stdin.readLineSync()!;
+
+    print("Ingrese la energia del senamon $value");
+    int energia = int.parse(stdin.readLineSync()!);
+
+    senamon(value, 1, key, peso, 20, 100, energia, descripcion);
+    print(senamones1);
+  });
+
+  senamones2.forEach((key, value) {
+    print("Ingrese el peso del senamon $value");
+    int peso = int.parse(stdin.readLineSync()!);
+
+    print("Ingrese la descripcion del senamon $value");
+    String? descripcion = stdin.readLineSync()!;
+
+    print("Ingrese la energia del senamon $value");
+    int energia = int.parse(stdin.readLineSync()!);
+
+    senamon(value, 2, key, peso, 20, 100, energia, descripcion);
+    print(senamones2);
+  });
 }
