@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class jugador {
   String nombre;
   String email;
