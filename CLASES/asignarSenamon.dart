@@ -1,4 +1,4 @@
-class senamon {
+class Senamon {
   String nombre;
   int nivel;
   String tipoSenamon;
@@ -8,7 +8,7 @@ class senamon {
   int energia;
   String descripcion;
 
-  senamon(
+  Senamon(
     this.nombre,
     this.nivel,
     this.tipoSenamon,
@@ -19,11 +19,17 @@ class senamon {
     this.descripcion,
   );
 
-  void aumentarAtaque(int ataque) {
-    this.ataque += ataque;
+  void aumentarAtaque(int aumento) {
+    this.ataque += aumento;
+    print("El ataque de $nombre ha aumentado a $ataque.");
   }
 
-  void aumentarSalud(int salud) {
-    this.salud += salud;
+  void aumentarSalud(int aumento) {
+    this.salud += aumento;
+    print("La salud de $nombre ha aumentado a $salud.");
+  }
+
+  String toString() {
+    return "Nombre: $nombre, Tipo: $tipoSenamon, Nivel: $nivel, Peso: $peso, Ataque: $ataque, Salud: $salud, Energía: $energia, Descripción: $descripcion";
   }
 }
