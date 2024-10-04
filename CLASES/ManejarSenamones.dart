@@ -1,4 +1,7 @@
 import 'dart:math';
+import 'Entrenador.dart';
+import 'Senamones.dart';
+import 'dart:io';
 
 class ManejarSenamones {
   List<List<dynamic>> senamones = [
@@ -89,6 +92,36 @@ void returnVolador() {
     if (senamon[2] == "Volador") {
       print(senamon[0]);
     }
+  }
+}
+
+void mejorarSenamon(Entrenador entrenador) {
+  if (entrenador.nivelExperiencia > 200) {
+    print("Seleccione el Senamon del ${entrenador.nombre} que desea mejorar:");
+    entrenador.mostrarEquipo();
+    int indiceSenamon = int.parse(stdin.readLineSync()!);
+
+    if (indiceSenamon >= 0 && indiceSenamon < entrenador.senamones.length) {
+      print("¿Desea mejorar 1. Ataque o 2. Salud?");
+      int opcionMejora = int.parse(stdin.readLineSync()!);
+
+      Senamon senamon = entrenador.senamones[indiceSenamon];
+      if (opcionMejora == 1) {
+        senamon.ataque += 10; 
+        entrenador.nivelExperiencia -= 200;
+        print("Ataque de ${senamon.nombre} mejorado a ${senamon.ataque}.");
+      } else if (opcionMejora == 2) {
+        senamon.salud += 20; 
+        entrenador.nivelExperiencia -= 200; 
+        print("Salud de ${senamon.nombre} mejorada a ${senamon.salud}.");
+      } else {
+        print("Opción inválida.");
+      }
+    } else {
+      print("Índice de Senamon inválido.");
+    }
+  } else {
+    print("${entrenador.nombre} no tiene suficiente experiencia.");
   }
 }
 }
