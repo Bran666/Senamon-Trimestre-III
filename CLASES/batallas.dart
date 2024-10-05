@@ -180,7 +180,6 @@ class Batalla {
         return 1.1; // Poco efectivo
     }
 
-    // Por defecto si no hay coincidencia de tipos
-    return 1.0; // Normal
+    return 1.0; 
   }
 }
